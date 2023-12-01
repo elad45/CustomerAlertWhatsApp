@@ -1,0 +1,34 @@
+const headerClickIntervalId = setInterval(() => {
+    setInterval(kosherfy, 1000*5);
+    setInterval(reloadfunction, 1000*10*8);
+    function reloadfunction() {
+        console.log("im reloading")
+        location.reload()
+    }
+    
+    function kosherfy() {
+		chrome.exe --autoplay-policy=no-user-gesture-required
+        // Select all elements with the specified class
+        var elements = document.querySelectorAll('.MuiTypography-root.MuiTypography-body2.MuiListItemText-secondary.muirtl-ascnuj');
+        var contentOfSecondElement = 0
+		var contentOfFirstElement = 0
+        console.log(elements)
+		
+		// Get the content of the second element
+        if (elements.length > 0){
+			contentOfSecondElement = elements[1].textContent
+			contentOfFirstElement = elements[0].textContent;
+
+			console.log("hi")        
+			}
+        
+        if (document.body.innerText.includes("ספירה")  || contentOfSecondElement != '(0)' || contentOfFirstElement != '(0)') {
+            console.log("The word ספירה is present on the page.");
+            var soundAudio = new Audio("https://commondatastorage.googleapis.com/codeskulptor-assets/Evillaugh.ogg")
+            soundAudio.play();
+        } else {
+            console.log("The word ספירה is not present on the pagee.");
+        }
+    }
+    clearInterval(headerClickIntervalId)
+}, 100);
